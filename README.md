@@ -16,16 +16,16 @@ Technologies I used in this work:
 - [x] <b>Page Object</b>
 - [x] <b>Parametrised build</b>
 - [x] <b>Allure TestOps</b>
-<img src="/images/Allure_TestOps.png" width="500" height="150">
+<img src="/images/Allure_TestOps.png" width="420" height="150">
 
 - [x] <b>Integration with Jira</b>
-<img src="/images/Jira.png" width="400" height="450">
+<img src="/images/Jira.png" width="450" height="450">
 
 - [x] <b>Allure reports</b>
-<img src="/images/Allure_Report.png" width="400" height="220">
+<img src="/images/Allure_Report.png" width="480" height="220">
 
 - [x] <b>Telegram notifications</b>
-<img src="/images/telegram-notification.png" width="200" height="210">
+<img src="/images/telegram_notification.png" width="200" height="210">
 
 <br><br>
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=ivan-andriankin)](https://github.com/ivan-andriankin/vacancy-haulmont/github-readme-stats)
