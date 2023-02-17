@@ -56,7 +56,7 @@ public class Tests extends TestBase {
     @Test
     void checkNumberOfHeaderItemsInPrivacyPolicy() {
         siteObjects.openPage()
-                        //.acceptCookies()
+                        //.acceptCookies() // is not needed for launching on selenoid server
                         .goToPrivacyPolicyPage()
                         .verifyPageUrl(privacyPolicyPageUrl)
                         .countPrivacyPolicyTitles()
