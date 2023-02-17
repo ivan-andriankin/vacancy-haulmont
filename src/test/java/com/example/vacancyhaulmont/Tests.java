@@ -81,7 +81,6 @@ public class Tests extends TestBase {
     @Test
     void checkCorrectnesOfContactPhoneNumberInFooter() {
         siteObjects.openPage()
-                        .acceptCookies()
                         .checkContactPhoneNumber()
         ;
     }
