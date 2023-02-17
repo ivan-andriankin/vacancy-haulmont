@@ -56,6 +56,7 @@ public class Tests extends TestBase {
     @Test
     void checkNumberOfHeaderItemsInPrivacyPolicy() {
         siteObjects.openPage()
+                        .acceptCookies()
                         .goToPrivacyPolicyPage()
                         .verifyPageUrl(privacyPolicyPageUrl)
                         .countPrivacyPolicyTitles()
