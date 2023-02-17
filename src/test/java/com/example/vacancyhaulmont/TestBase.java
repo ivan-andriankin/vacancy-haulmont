@@ -17,11 +17,8 @@ public class TestBase {
 
     SiteObjects siteObjects = new SiteObjects();
 
-//    static String currentCityRus = "Тольятти";
-//    static String currentCityEng = "Tolyatti";
-//    static String x5Group = "X5 Group";
-//    static String x5GroupImport = "X5 GROUP, Import";
-//    static String x5Digital = "X5 Digital";
+    static String projectsPageUrl = "/projects/";
+    static String privacyPolicyPageUrl = "/privacy-policy/";
 
 
     @BeforeAll

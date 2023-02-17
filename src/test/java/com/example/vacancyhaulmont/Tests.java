@@ -1,7 +1,5 @@
 package com.example.vacancyhaulmont;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -30,8 +28,8 @@ public class Tests extends TestBase {
     @MethodSource("headerMenuItems")
     @ParameterizedTest(name="Проверить все кнопки меню {0} в хэдере")
     void checkAllButtonsInHeaderMenu(List<String> buttons) {
-        siteObjects.openPage();
-        $(".header__menu.header__menu_desctop").$$(".header__item").shouldHave(texts(buttons));
+        siteObjects.openPage()
+                .verifyAllButtonsInHeaderMenu(buttons);
     }
 
 
@@ -39,22 +37,17 @@ public class Tests extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     @Test
     void checkProjectFilter() {
-        siteObjects.openPage();
-        $(".button.cookies__button").click();
-        $(withTagAndText("span", "Все наши проекты")).click();
-        assertEquals(Configuration.baseUrl + "/projects/", url());
-
-        $$(".vue-treeselect.vue-treeselect--single.vue-treeselect--has-value.vue-treeselect--open-below")
-                .findBy(text("Все отрасли")).click();
-        $$(".label-tree").findBy(text("Разработка систем автоматизации")).click();
-        $$(".vue-treeselect.vue-treeselect--single.vue-treeselect--has-value.vue-treeselect--open-below")
-                .findBy(text("Все форматы работы")).click();
-        $$(".label-tree").findBy(text("На базе платформы Jmix")).click();
-
-        $$("div[class=solutions__item]" + ":not(.solutions-case-enter-to)")
-                .findBy(text("Разработка систем автоматизации")).shouldBe(visible);
-        $$("div[class=solutions__item]" + ":not(.solutions-case-enter-to)")
-                .findBy(text("На базе платформы Jmix")).shouldBe(visible);
+        siteObjects.openPage()
+                        .acceptCookies()
+                        .goToProjectsPage()
+                        .verifyPageUrl(projectsPageUrl)
+                        .clickOnDropDownMenuInProjectsPage("Все отрасли")
+                        .chooseDropDownOptionInProjectsPage("Разработка систем автоматизации")
+                        .clickOnDropDownMenuInProjectsPage("Все форматы работы")
+                        .chooseDropDownOptionInProjectsPage("На базе платформы Jmix")
+                        .checkFilteredItem("Разработка систем автоматизации")
+                        .checkFilteredItem("На базе платформы Jmix")
+        ;
     }
 
 
@@ -62,11 +55,12 @@ public class Tests extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     @Test
     void checkNumberOfHeaderItemsInPrivacyPolicy() {
-        siteObjects.openPage();
-        $(".button.cookies__button").click();
-        $(withTagAndText("a", "Политика конфиденциальности")).click();
-        assertEquals(Configuration.baseUrl + "/privacy-policy/", url());
-        $$("h2[class=sub-title]").shouldHave(size(8));
+        siteObjects.openPage()
+                        .acceptCookies()
+                        .goToPrivacyPolicyPage()
+                        .verifyPageUrl(privacyPolicyPageUrl)
+                        .countPrivacyPolicyTitles()
+        ;
     }
 
 
@@ -74,10 +68,11 @@ public class Tests extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     @Test
     void checkMainServicesSection() {
-        siteObjects.openPage();
-        $(".section.main-services").$(".head__title.title").shouldBe(visible);
-        $(".section.main-services").$(".main-list.list-reset").$$("li").shouldHave(size(6));
-        $(".section.main-services").$(".main-list__button").$(withTagAndText("span", "Все наши услуги"));
+        siteObjects.openPage()
+                        .checkMainServicesTitle()
+                        .countMainServicesElements()
+                        .checkMainServicesButton()
+        ;
     }
 
 
@@ -85,8 +80,10 @@ public class Tests extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     @Test
     void checkCorrectnesOfContactPhoneNumberInFooter() {
-        siteObjects.openPage();
-        $("a[class=footer__phone]").shouldHave(text("8 800 77 55 205"));
+        siteObjects.openPage()
+                        .acceptCookies()
+                        .checkContactPhoneNumber()
+        ;
     }
 
 
